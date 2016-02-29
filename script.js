@@ -7,7 +7,7 @@ function getRandomColor() {
     return color;
 }
 
-var clickedTime; var createdTime; var reactionTime; var kanye = document.getElementById("kanye");
+var clickedTime; var createdTime; var reactionTime; var target = document.getElementById("target");
 
 function makeBox() {
 		
@@ -25,23 +25,25 @@ function makeBox() {
 	
 	left = left*550;
 	
-	kanye.style.top = top + "px";
+	target.style.top = top + "px";
 	
-	kanye.style.left = left + "px";
+	target.style.left = left + "px";
+
+	target.style.backgroundColor = getRandomColor();
 	
 	setTimeout(function () {
 		
 		if (circle > 2) {
 			
-			document.getElementById("kanye").style.borderRadius = "100px";
+			document.getElementById("target").style.borderRadius = "100px";
 			
 		} else {
 			
-			document.getElementById("kanye").style.borderRadius = "0";
+			document.getElementById("target").style.borderRadius = "0";
 			
 		}
 		
-		kanye.style.display="block";
+		target.style.display="block";
 		
 		createdTime = Date.now();
 		
@@ -49,12 +51,30 @@ function makeBox() {
 		
 }
 
-document.getElementById("kanye").onclick=function () {
+document.getElementById("target").onclick=function () {
 	
 	clickedTime = Date.now();
 	
 	reactionTime = (clickedTime - createdTime)/1000;
 	
+		if (reactionTime < 0.5) {
+
+			alert("Crap you're fast!");
+	
+		}
+
+		if (reactionTime > 1.5 && reactionTime < 5) {
+
+			alert("Damn you're slow!!!");
+
+		}	
+
+		if (reactionTime > 5) {
+
+			alert("Are you even still playing?");
+		
+		}
+
 	this.style.display="none";
 	
 	makeBox();
@@ -64,6 +84,8 @@ document.getElementById("kanye").onclick=function () {
 	document.getElementById("color").style.color = getRandomColor();
 	
 	document.getElementById("color2").style.color = getRandomColor();
+
+		
 		
 	};
 	
