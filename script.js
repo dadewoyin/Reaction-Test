@@ -1,3 +1,4 @@
+// Function to get random color
 function getRandomColor() {
     var letters = '0123456789ABCDEF'.split('');
     var color = '#';
@@ -10,13 +11,15 @@ function getRandomColor() {
 var clickedTime; var createdTime; var reactionTime; var target = document.getElementById("target");
 
 function makeBox() {
-		
+	// Time variable for how long it'll take the target to be created
 	var time = Math.random();
 	
 	time = time*4000;
 	
+	// Create either a box target or a circle target
 	var circle = [Math.floor(Math.random() * 5)];
 	
+	// Random positioning of target
 	var top = Math.random();
 	
 	top = top*350;
@@ -29,6 +32,7 @@ function makeBox() {
 	
 	target.style.left = left + "px";
 
+	// Random color for target
 	target.style.backgroundColor = getRandomColor();
 	
 	setTimeout(function () {
@@ -55,21 +59,23 @@ document.getElementById("target").onclick=function () {
 	
 	clickedTime = Date.now();
 	
+	// Convert reactionTime into seconds
 	reactionTime = (clickedTime - createdTime)/1000;
 	
+		// Make the user feel good (or bad) themselves :)
 		if (reactionTime < 0.5) {
 
 			alert("Crap you're fast!");
 	
 		}
 
-		if (reactionTime > 1.5 && reactionTime < 5) {
+		else if (reactionTime > 1.5 && reactionTime < 5) {
 
 			alert("Damn you're slow!!!");
 
 		}	
 
-		if (reactionTime > 5) {
+		else if (reactionTime > 5) {
 
 			alert("Are you even still playing?");
 		
@@ -79,6 +85,7 @@ document.getElementById("target").onclick=function () {
 	
 	makeBox();
 	
+	// Show reactionTime to user
 	document.getElementById("time").innerHTML = reactionTime;
 	
 	document.getElementById("color").style.color = getRandomColor();
